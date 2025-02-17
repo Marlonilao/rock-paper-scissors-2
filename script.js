@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    computerChoice = Math.floor(Math.random() * 3) + 1
+    let computerChoice = Math.floor(Math.random() * 3) + 1
     switch (computerChoice) {
         case 1:
             return "Rock";
@@ -14,7 +14,7 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-    humanChoice = prompt("Rock, Paper, Scissors?: ");
+    let humanChoice = prompt("Rock, Paper, Scissors?: ");
     humanChoice = humanChoice[0].toUpperCase() + humanChoice.substring(1).toLowerCase();
     return humanChoice;
 }
