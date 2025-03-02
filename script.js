@@ -23,21 +23,27 @@ const compScore = document.querySelector('.comp-score');
 const btnsContainer = document.querySelector('.buttons-container');
 
 
-const controller = new AbortController();
-start.addEventListener('click', function handler() {
+
+start.addEventListener('click', gameStart);
+
+function gameStart() {
     gameLog.textContent = 'Pick your move! (First to score 5 wins the game.)';
     let user = 0;
     let comp = 0;
     function checkGameOver() {
         if (user === 5 || comp === 5) {
-            gameLog.textContent = "Game over! (click refresh if you want to play again.)"
-            controller.abort();
+            gameLog.textContent = "Game over!"
             if (user > comp) {
-            btnsContainer.innerHTML = "<p>Congrats! You win!<p>";
+                btnsContainer.innerHTML = "<p class='endText'>Congrats! You win!<p>";
             } else {
-                btnsContainer.innerHTML = "<p>Computer wins :(</p>"
+                btnsContainer.innerHTML = "<p class='endText'>Computer wins :(</p>"
             }
+            start.textContent = "Restart";
+            start.addEventListener('click' , () => {
+                location.reload();
+            });
         }
+
     }
     
     rockbtn.addEventListener('click' , () => {
@@ -50,13 +56,13 @@ start.addEventListener('click', function handler() {
             case 'Paper':
                 gameLog.textContent = "Rock vs Paper. You lose!";
                 comp = comp + 1;
-                compScore.textContent = `${comp}`;
+                compScore.textContent = ` ${comp}`;
                 break;
 
             case 'Scissors':
                 gameLog.textContent = "Rock vs Scissors. You win!";
                 user = user + 1;
-                userScore.textContent =`${user}`;
+                userScore.textContent =`${user} `;
                 break;
        }
        checkGameOver();
@@ -68,7 +74,7 @@ start.addEventListener('click', function handler() {
             case 'Rock':
                 gameLog.textContent = "Paper vs Rock. You win!";
                 user = user + 1;
-                userScore.textContent =`${user}`;
+                userScore.textContent =`${user} `;
                 break;
     
             case 'Paper':
@@ -78,7 +84,7 @@ start.addEventListener('click', function handler() {
             case 'Scissors':
                 gameLog.textContent = "Paper vs Scissors. You lose!";
                 comp = comp + 1;
-                compScore.textContent = `${comp}`;
+                compScore.textContent = ` ${comp}`;
                 break;
         }
         checkGameOver();
@@ -90,13 +96,13 @@ start.addEventListener('click', function handler() {
             case 'Rock':
                 gameLog.textContent = "Scissors vs Rock. You lose!";
                 comp = comp + 1;
-                compScore.textContent = `${comp}`;
+                compScore.textContent = ` ${comp}`;
                 break;
     
             case 'Paper':
                 gameLog.textContent = "Scissors vs Paper. You win!";
                 user = user + 1;
-                userScore.textContent =`${user}`;
+                userScore.textContent =`${user} `;
                 break;
     
             case 'Scissors':
@@ -105,5 +111,4 @@ start.addEventListener('click', function handler() {
         }
         checkGameOver();
     })
-},{signal: controller.signal});
-
+}

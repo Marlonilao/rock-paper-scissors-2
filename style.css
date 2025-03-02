@@ -4,8 +4,16 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'chalkboard';
+    src: url(rps-downloads/ChalkBoard/TTF/ChalkBoard.ttf);
+}
+
 body {
     height: 100vh;
+    background-image: url(rps-downloads/painted-solid-concrete-wall-textured-background.jpg);
+    font-family: 'chalkboard';
+    color: white;
 }
 
 .header-container {
@@ -14,7 +22,9 @@ body {
 
 .header {
     text-align: center;
+    font-size: 80px;
 }
+
 
 .section-container {
     text-align: center;
@@ -25,4 +35,27 @@ body {
     flex-direction: column;
     height: 500px;
     justify-content: space-around;
+}
+
+.score {
+    font-size: 30px;
+    border: 2px solid white;
+    align-self: center;
+    width: 200px;
+    padding-top: 9px;
+}
+
+.game-log {
+    font-size: 30px;
+}
+
+.start-button {
+    font-family: 'chalkboard';
+    font-size: x-large;
+    padding: 8px;
+}
+
+.endText {
+    font-family: 'chalkboard';
+    font-size: 30px;
 }
