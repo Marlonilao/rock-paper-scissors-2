@@ -1,0 +1,28 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+.header-container {
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+}
+
+.section-container {
+    text-align: center;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: space-around;
+}

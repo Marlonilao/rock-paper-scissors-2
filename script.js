@@ -13,56 +13,97 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper, Scissors?: ");
-    humanChoice = humanChoice[0].toUpperCase() + humanChoice.substring(1).toLowerCase();
-    return humanChoice;
-}
+const start = document.querySelector('.start-button');
+const rockbtn = document.querySelector('.rock-button');
+const paperbtn =  document.querySelector('.paper-button');
+const scissorsbtn = document.querySelector('.scissors-button');
+const gameLog = document.querySelector('.game-log');
+const userScore = document.querySelector('.user-score');
+const compScore = document.querySelector('.comp-score');
+const btnsContainer = document.querySelector('.buttons-container');
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    
-    function playRound() {
-        human = getHumanChoice();
-        computer = getComputerChoice();
-        if (human === "Rock" && computer === "Rock") {
-            console.log("Rock vs Rock. It's a tie!")
-        } else if (human === "Rock" && computer === "Paper") {
-            console.log("Rock vs Paper. You lose!")
-            computerScore++
-        } else if (human === "Rock" && computer === "Scissors") {
-            console.log("Rock vs Scissors. You win!")
-            humanScore++
-        } else if (human === "Paper" && computer === "Rock") {
-            console.log("Paper vs Rock. You win!")
-            humanScore++
-        } else if (human === "Paper" && computer === "Paper") {
-            console.log("Paper vs Paper. It's a tie!")
-        } else if (human === "Paper" && computer === "Scissors") {
-            console.log("Paper vs Scissors. You lose!")
-            computerScore++
-        } else if (human === "Scissors" && computer === "Rock") {
-            console.log("Scissors vs Rock. You lose!")
-            computerScore++
-        } else if (human === "Scissors" && computer === "Paper") {
-            console.log("Scissors vs Paper. You win!")
-            humanScore++
-        } else if (human === "Scissors" && computer === "Scissors") {
-            console.log("Scissors vs Scissors. It's a tie!")
+
+const controller = new AbortController();
+start.addEventListener('click', function handler() {
+    gameLog.textContent = 'Pick your move! (First to score 5 wins the game.)';
+    let user = 0;
+    let comp = 0;
+    function checkGameOver() {
+        if (user === 5 || comp === 5) {
+            gameLog.textContent = "Game over! (click refresh if you want to play again.)"
+            controller.abort();
+            if (user > comp) {
+            btnsContainer.innerHTML = "<p>Congrats! You win!<p>";
+            } else {
+                btnsContainer.innerHTML = "<p>Computer wins :(</p>"
+            }
         }
     }
     
-    playRound();
-    console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}`)
-    playRound();
-    console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}`)        
-    playRound();
-    console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}`)
-    playRound();
-    console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}`)    
-    playRound();
-    console.log(`Human Score: ${humanScore}\nComputer Score: ${computerScore}`)
-}
+    rockbtn.addEventListener('click' , () => {
+        const computer = getComputerChoice();
+        switch (computer) {
+            case 'Rock':
+                gameLog.textContent = "Rock vs Rock. It's a tie!";
+                break;
 
-playGame();
+            case 'Paper':
+                gameLog.textContent = "Rock vs Paper. You lose!";
+                comp = comp + 1;
+                compScore.textContent = `${comp}`;
+                break;
+
+            case 'Scissors':
+                gameLog.textContent = "Rock vs Scissors. You win!";
+                user = user + 1;
+                userScore.textContent =`${user}`;
+                break;
+       }
+       checkGameOver();
+    })
+
+    paperbtn.addEventListener('click' , () =>{
+        const computer = getComputerChoice();
+        switch (computer) {
+            case 'Rock':
+                gameLog.textContent = "Paper vs Rock. You win!";
+                user = user + 1;
+                userScore.textContent =`${user}`;
+                break;
+    
+            case 'Paper':
+                gameLog.textContent = "Paper vs Paper. It's a tie!";
+                break;
+    
+            case 'Scissors':
+                gameLog.textContent = "Paper vs Scissors. You lose!";
+                comp = comp + 1;
+                compScore.textContent = `${comp}`;
+                break;
+        }
+        checkGameOver();
+    })
+
+    scissorsbtn.addEventListener('click' , () => {
+        const computer = getComputerChoice();
+        switch (computer) {
+            case 'Rock':
+                gameLog.textContent = "Scissors vs Rock. You lose!";
+                comp = comp + 1;
+                compScore.textContent = `${comp}`;
+                break;
+    
+            case 'Paper':
+                gameLog.textContent = "Scissors vs Paper. You win!";
+                user = user + 1;
+                userScore.textContent =`${user}`;
+                break;
+    
+            case 'Scissors':
+                gameLog.textContent = "Scissors vs Scissors. It's a tie!";
+                break;
+        }
+        checkGameOver();
+    })
+},{signal: controller.signal});
+

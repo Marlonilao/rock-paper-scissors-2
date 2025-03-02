@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
@@ -14,16 +15,23 @@
     </div>
     <div class = "section-container">
         <div class="section">
-            <div class ="score"></div>
-            <div class = "game-statement"></div>
+            <div class ="score">
+                <div>USER <span class="user-score">0</span>:<span class="comp-score">0</span> COMP</div>
+            </div>
+            <div>
+                <p class="game-log"></p>
+            </div>
             <div class="buttons-container">
-               <button><img src="rps-images/rock.jpg" width="100px" height="100px" alt="rock"></button>
-               <button><img src="rps-images/paper.jpg" width="100px" height="100px" alt="paper"></button>
-               <button><img src="rps-images/scissors.jpg" width="100px" height="100px" alt="scissors"></button>
+               <button class="rock-button"><img src="rps-images/rock.jpg" width="100px" height="100px" alt="rock"></button>
+               <button class="paper-button"><img src="rps-images/paper.jpg" width="100px" height="100px" alt="paper"></button>
+               <button class="scissors-button"><img src="rps-images/scissors.jpg" width="100px" height="100px" alt="scissors"></button>
+            </div>
+            <div>
+                <button class="start-button">
+                    Start Game
+                </button>
             </div>
         </div>
     </div>
-    <div class="footer-container"></div>
-    
 </body>
 </html>
