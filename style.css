@@ -5,14 +5,18 @@
 }
 
 @font-face {
-    font-family: 'chalkboard';
-    src: url(rps-downloads/ChalkBoard/TTF/ChalkBoard.ttf);
+    font-family: 'Chalk Board';
+    src: url('rps-downloads/fonts/ChalkBoard.woff2') format('woff2'),
+        url('rps-downloads/fonts/ChalkBoard.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 body {
     height: 100vh;
     background-image: url(rps-downloads/painted-solid-concrete-wall-textured-background.jpg);
-    font-family: 'chalkboard';
+    font-family: 'Chalk Board';
     color: white;
 }
 
